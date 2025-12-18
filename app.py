@@ -102,7 +102,7 @@ if start_trial:
     juror_2 = Agent(role="Juror #2 (Equitable)", goal="Consider fairness and impact.", backstory="Social justice advocate.", llm=llm_jury, verbose=True)
     juror_3 = Agent(role="Juror #3 (Skeptical)", goal="Challenge assumptions.", backstory="Retired High Court judge.", llm=llm_jury, verbose=True)
 
-    # Clean display helper (no emojis, proper titles only)
+    # Clean display helper 
     def display_chat(transcript, container):
         lines = transcript.split("\n")
         current_speaker = None
