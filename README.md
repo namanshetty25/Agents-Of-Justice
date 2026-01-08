@@ -12,6 +12,32 @@ Built with **CrewAI**, **Groq** (Llama models), and **Streamlit**.
 
 [https://agents-of-justice.streamlit.app/](https://agents-of-justice.streamlit.app/)
 
+## System Architecture
+
+```mermaid 
+flowchart BT
+ subgraph subGraph0["AI Agents"]
+        CounselPet["Petitioner Counsel Agent"]
+        CounselResp["Respondent Counsel Agent"]
+        Jury1["Juror 1 - Analytical"]
+        Jury2["Juror 2 - Equitable"]
+        Jury3["Juror 3 - Skeptical"]
+        Judge["Presiding Judge Agent"]
+  end
+    User["User"] -- Enter Case Summary --> UI["Streamlit Frontend"]
+    UI -- Send Text --> App["app.py"]
+    App -- Initialize Agents --> CrewAI["CrewAI Orchestrator"]
+    CrewAI --> CounselPet & CounselResp & Jury1 & Jury2 & Jury3 & Judge
+    CounselPet -- Arguments --> CrewAI
+    CounselResp -- Arguments --> CrewAI
+    Jury1 -- Votes & Reasoning --> CrewAI
+    Jury2 -- Votes & Reasoning --> CrewAI
+    Jury3 -- Votes & Reasoning --> CrewAI
+    Judge -- Verdict + Reasoning --> App
+    App -- Display Transcript & Verdict --> UI
+    UI --> User
+```
+
 ## Features
 
 - Clean courtroom transcript
